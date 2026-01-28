@@ -170,7 +170,6 @@ function getAllPostListData() {
     $addPostTypes = string_addPostTypes();
 
     $query_getAllPostListData = "SELECT $table.post_id, $postTable.post_title AS post_title, $postTable.guid AS post_guid, post_type AS post_type, count($defaultLanguage) AS $defaultLanguage $addSelectLanguage FROM $table, $postTable WHERE ($defaultLanguage IS NOT NULL $addWhereLanguage) AND $table.post_id = $postTable.ID AND $table.track_language = '$defaultLanguage'AND $table.post_text_id IS NOT NULL  GROUP BY $table.post_id UNION SELECT $postTable.ID as post_id, $postTable.post_title AS post_title, $postTable.guid AS post_guid, post_type AS post_type $languageColumnNullFields FROM $postTable WHERE $addPostTypes AND post_title != 'Auto Draft' ORDER BY post_type ASC, post_id DESC";
-    // echo $query_getAllPostListData.'<hr>';
     $allPostListData = $GLOBALS['wpdb']->get_results($query_getAllPostListData);
 
     foreach ($allPostListData as $index => $rawData) {

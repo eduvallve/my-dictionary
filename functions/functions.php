@@ -11,7 +11,6 @@ require_once 'functions.page-inspect.php';
 if (is_admin()) {
     function my_dictionary_plugin() {
         createDB_pluginTables();
-        // fillDictionaryTable();
     }
 
     add_action('wp_enqueue_scripts', 'my_dictionary_plugin');

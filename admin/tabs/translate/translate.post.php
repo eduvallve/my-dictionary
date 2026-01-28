@@ -38,7 +38,6 @@ function getSinglePostData($post_id) {
         }
 
         $query_getSinglePostData = "SELECT $table.post_id, $postTable.post_title AS post_title, $postTable.guid AS post_guid, post_type AS post_type, count($defaultLanguage) AS $defaultLanguage $addSelectLanguage FROM $table, $postTable WHERE ($defaultLanguage IS NOT NULL $addWhereLanguage) AND $table.post_id = $postTable.ID AND $table.track_language = '$defaultLanguage' AND $table.post_id = $post_id AND $table.post_text_id IS NOT NULL GROUP BY $table.post_id";
-        // echo $query_getSinglePostData.'<hr>';
         $singlePostData = $GLOBALS['wpdb']->get_results($query_getSinglePostData)[0];
         $GLOBALS['cfg']['getSinglePostData'] = $singlePostData;
         return $singlePostData;
@@ -73,8 +72,6 @@ function showTranslationLine($savedPostText) {
 
 function showTranslationLines() {
     $savedPostTexts = getSavedPostTexts($_GET['translate_id'], true);
-
-    // print_r($savedPostTexts);
     
     foreach ( $savedPostTexts as $savedPostText ) {
         if ( $savedPostText->post_text_id !== null && $savedPostText->post_text_id !== '' ) {

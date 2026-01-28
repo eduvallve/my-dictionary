@@ -2,12 +2,12 @@
 require_once "admin.functions.php";
 
 function mydictionary_admin_page(){
-    // check user capabilities
+  // check user capabilities
   if ( ! current_user_can( 'manage_options' ) ) {
     return;
   }
 
-  //Get the active tab from the $_GET param
+  // Get the active tab from the $_GET param
   $default_tab = null;
   $tab = isset($_GET['tab']) ? $_GET['tab'] : $default_tab;
 

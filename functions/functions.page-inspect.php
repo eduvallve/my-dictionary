@@ -13,7 +13,6 @@ function findShortcodes($content) {
             array_filter(
                 $post_innerShort, function($value) {
                     return $value !== 'noun' && $value !== 'edu-years-experience' && $value !== '';
-                    // && $value !== 'edu-years-experience' should be replaced with a user custom set of non-translatable shortcodes
                 }
             )
         )
@@ -129,7 +128,6 @@ function querySavedPostTexts($post_id, $isPostTranslatePage = false) {
     $requestedLanguages = $isPostTranslatePage ? ", ".implode(", ",$translationLanguages) : '' ;
 
     $query_getSavedPostTexts = "SELECT id, post_text_id, $defaultLanguage $requestedLanguages FROM $table WHERE post_id = $post_id AND track_language = '$defaultLanguage' ORDER BY $defaultLanguage ASC, id ASC";
-    // echo '<br>'.$query_getSavedPostTexts.' <b><u>OK SO FAR</u></b>';
     $savedPostTexts = $GLOBALS['wpdb']->get_results($query_getSavedPostTexts);
 
 
